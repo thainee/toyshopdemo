@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toy Kingdom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/grid.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="grid wide">
+                <nav class="navbar">
+                    <!-- Navbar list  -->
+                    <div class="navbar__container hide-on-tablet-mobile">
+                        <div class="navbar__list">
+                            <!-- <a href="" class="navbar__item navbar--border">Trở thành Người bán Shopee</a> -->
+                            <a class="navbar__qr navbar--border" href="https://shopee.vn/web" target="_blank">
+                                <div class="navbar__item navbar--pointer">Tải ứng dụng</div>
+                                <div class="qr navbar--pointer">
+                                    <div><img class="qr__img" src="./assets/img/header_qr/header_qr.png" alt=""></div>
+                                    <div class="row qr__more">
+                                        <img class="qr__link" src="./assets/img/header_qr/header_qr_appstore.png"
+                                            alt="">
+                                        <img class="qr__link" src="./assets/img/header_qr/header_qr_ggplay.png" alt="">
+                                        <img class="qr__link" src="./assets/img/header_qr/header_qr_gallery.png" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="row">
+                                <div class="navbar__text">
+                                    Kết nối
+                                </div>
+                                <a href="https://www.facebook.com/ShopeeVN" target="_blank"
+                                    class="navbar__icon navbar__item">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                                <a href="https://www.instagram.com/Shopee_VN" target="_blank"
+                                    class="navbar__icon navbar__item">
+                                    <i class="fab fa-instagram-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="navbar__list">
+                            <div class="navbar__notify">
+                                <div class="navbar__item">
+                                    <i class="navbar__icon far fa-bell"></i>
+                                    Thông báo
+                                </div>
+                                <!-- Notify  -->
+                                <div class="notify">
+                                    <header class="notify__header">
+                                        Thông báo mới nhận
+                                    </header>
+                                    <div class="notify__body">
+                                        <a href="#" class="notify__item notify--seen">
+                                            <img class="notify__img"
+                                                src="https://cf.shopee.vn/file/afd61876eccbba55e5fd44dc5e361ac2_tn"
+                                                alt="">
+                                            <div class="notify__content">
+                                                <p class="notify__title">Voucher nóng hổi đừng vội bỏ qua!</p>
+                                                <p class="notify__note">💥 Mã Hoàn đến 100K Xu đơn 150K
+                                                    🌈 Đã có sẵn trong ví voucher của bạn
+                                                    🔔 Hiệu lực: 0H 19/09/2021 - 23H59 25/09/2021
+                                                    👉 Số lượng có hạn - Dùng ngay bạn nhé!</p>
+                                            </div>
+                                        </a>
+
+                                        <a href="#" class="notify__item">
+                                            <img class="notify__img"
+                                                src="https://cf.shopee.vn/file/565277eec233892490bc426672ab6165_tn"
+                                                alt="">
+                                            <div class="notify__content">
+                                                <p class="notify__title">Ting Ting</p>
+                                                <p class="notify__note">✨Vũ trụ Shopee đang mách bảo bạn điều gì? Xem
+                                                    ngay TẠI ĐÂY👉</p>
+                                            </div>
+                                        </a>
+
+                                        <a href="#" class="notify__item">
+                                            <img class="notify__img"
+                                                src="https://cf.shopee.vn/file/ea575d282e9b554e2192343f3bcee3b9_tn"
+                                                alt="">
+                                            <div class="notify__content">
+                                                <p class="notify__title">Rầm rộ loạt deal x9K từ hàng Quốc Tế</p>
+                                                <p class="notify__note">🔥 Hàng hot từ Hàn Quốc, Indonesia
+                                                    💫 Mua nhiều giảm đến 50%
+                                                    ✨ Thương hiệu ưu đãi giảm đến 50%
+                                                    🛒 Hấp dẫn quá nè - Bỏ giỏ liền tay!</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <footer class="notify__footer">
+                                        <a href="#" class="notify__more">
+                                            Xem tất cả
+                                        </a>
+                                    </footer>
+                                </div>
+                            </div>
+                            <a class="navbar__item" href="https://help.shopee.vn/vn/s/" target="_blank">
+                                <i class="navbar__icon far fa-question-circle"></i>
+                                Hỗ trợ
+                            </a>
+                            <!-- Navbar Login / Register  -->
+                            <a href="" class="navbar__item navbar--border">Đăng ký</a>
+                            <a href="" class="navbar__item">Đăng nhập</a>
+
+                            <!-- User menu  -->
+                            <!-- <div class="navbar__user">
+                                <a href="" class="navbar__user-link">
+                                    <img class="navbar__user-img"
+                                        src="https://cf.shopee.vn/file/e9f6bcc35951ce6b77721e6688064886_tn" alt="">
+                                    <span class="navbar__user-name">Thaiprodep322</span>
+                                </a>
+                                <div class="user-menu">
+                                    <a href="#" class="user-menu__item">Tài khoản của tôi</a>
+                                    <a href="#" class="user-menu__item">Đơn mua</a>
+                                    <a href="#" class="user-menu__item user-menu-item--separate">Đăng xuất</a>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </nav>
+                <!-- Header search  -->
+                <div class="header-w-search">
+                    <label for="mobile-search-checkbox" class="header-w-search__mobile-search">
+                        <i class="fas fa-search"></i>
+                    </label>
+
+                    <a href="/" class="header-w-search__logo hide-on-tablet">
+                        <img src="./assets/img/toykingdom_logo.png" class="header-w-search__logo-img">
+
+                    </a>
+
+                    <input type="checkbox" hidden id="mobile-search-checkbox" class="header-w-search__search-checkbox">
+
+                    <div class="header-w-search__search">
+                        <div class="search-bar">
+                            <div class="search-bar__input-wrap">
+                                <input type="text" class="search-bar__input" placeholder="Tìm trong shop này">
+                                <!-- Search history  -->
+                                <div class="search-bar__history">
+                                    <header class="search-bar__history-heading">
+                                        Lịch sử tìm kiếm
+                                    </header>
+                                    <div class="search-bar__history-list">
+                                        <a href="#" class="search-bar__history-items">
+                                            Kem trị mụn
+                                        </a>
+                                        <a href="#" class="search-bar__history-items">
+                                            Kem dưỡng da
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn btn--small btn--primary">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-w-search__cart">
+                        <!-- Cart list  -->
+                        <div class="cart-drawer">
+                            <i class="header-w-search__cart-img fas fa-shopping-cart"></i>
+                            <span class="cart-drawer__quantity">3</span>
+                            <!-- No cart: cart-drawer--no-cart  -->
+                            <!-- Cart list  -->
+                            <div class="cart-drawer__list">
+                                <img src="./assets/img/header_cart/no__cart.png" alt=""
+                                    class="cart-drawer-no-cart__img">
+                                <span class="cart-drawer-no-cart__msg">Chưa có sản phẩm</span>
+
+                                <div class="cart-drawer__list-header">
+                                    Sản phẩm mới thêm
+                                </div>
+
+                                <div class="cart-drawer__items">
+                                    <img src="https://cf.shopee.vn/file/6799d0e1227876dad94b185f51d18d04_tn" alt=""
+                                        class="cart-drawer__items-img">
+                                    <div class="cart-drawer__items-info">
+                                        <div class="cart-drawer__items-intro">
+                                            <div class="cart-drawer__items-header">Nước rửa mắt Eyebon</div>
+                                            <div class="cart-drawer__items-wrap">
+                                                <div class="cart-drawer__items-price">350.000đ </div>
+                                                <div class="cart-drawer__items-multiply">x</div>
+                                                <div class="cart-drawer__items-quantity">2</div>
+                                            </div>
+                                        </div>
+                                        <div class="cart-drawer__items-wrap">
+                                            <div class="cart-drawer__items-classify">Phân loại hàng: Hồng mới</div>
+                                            <div class="cart-drawer__items-remove">Xóa</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cart-drawer__items">
+                                    <img src="https://cf.shopee.vn/file/f91ed2d18d9089cf4f97ebac77b4b83f_tn" alt=""
+                                        class="cart-drawer__items-img">
+                                    <div class="cart-drawer__items-info">
+                                        <div class="cart-drawer__items-intro">
+                                            <div class="cart-drawer__items-header">Khẩu trang chống sương mù</div>
+                                            <div class="cart-drawer__items-wrap">
+                                                <div class="cart-drawer__items-price">79.000đ</div>
+                                                <div class="cart-drawer__items-multiply">x</div>
+                                                <div class="cart-drawer__items-quantity">1</div>
+                                            </div>
+                                        </div>
+                                        <div class="cart-drawer__items-wrap">
+                                            <div class="cart-drawer__items-classify">Phân loại hàng: Đen</div>
+                                            <div class="cart-drawer__items-remove">Xóa</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cart-drawer__items">
+                                    <img src="https://cf.shopee.vn/file/9a3e039acfe997d18ea31dfedaab0df8_tn" alt=""
+                                        class="cart-drawer__items-img">
+                                    <div class="cart-drawer__items-info">
+                                        <div class="cart-drawer__items-intro">
+                                            <div class="cart-drawer__items-header">Khẩu trang Xiaomi KN95</div>
+                                            <div class="cart-drawer__items-wrap">
+                                                <div class="cart-drawer__items-price">72.000đ</div>
+                                                <div class="cart-drawer__items-multiply">x</div>
+                                                <div class="cart-drawer__items-quantity">1</div>
+                                            </div>
+                                        </div>
+                                        <div class="cart-drawer__items-wrap">
+                                            <div class="cart-drawer__items-classify">Phân loại hàng: Đen</div>
+                                            <div class="cart-drawer__items-remove">Xóa</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="cart-drawer__list-view btn btn--primary">Xem giỏ hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sort-bar">
+                <a href="" class="sort-bar__item sort-bar--active">Liên quan</a>
+                <a href="" class="sort-bar__item">Mới nhất</a>
+                <a href="" class="sort-bar__item">Bán chạy</a>
+                <a href="" class="sort-bar__item">Giá</a>
+            </div>
+        </header>
+
+        <div class="app__container">
+            <div class="grid wide">
+                <div class="row sm-gutter">
+                    <div class="col l-2 m-0 c-0">
+                        <nav class="category">
+                            <h3 class="category__heading">
+                                <i class="category__heading-icon fas fa-list"></i>
+                                Danh mục shop
+                            </h3>
+
+                            <div class="category__list">
+                                <a href="" class="category__item ">Trang điểm mặt</a>
+                                <a href="" class="category__item category__item--active">Trang điểm môi</a>
+                                <a href="" class="category__item">Trang điểm mắt</a>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col l-10 m-12 c-12">
+                        <!-- Home filter -->
+                        <div class="home-filter hide-on-tablet-mobile">
+                            <span class="home-filter__label">
+                                Sắp xếp theo
+                            </span>
+                            <button class="btn btn--small">Phổ biến</button>
+                            <button class="btn btn--small btn--primary">Mới nhất</button>
+                            <button class="btn btn--small">Bán chạy</button>
+                            <div class="select-input">
+                                Giá
+                                <i class="fas fa-angle-down"></i>
+                                <div class="select-input__list">
+                                    <a href="" class="select-input__item">
+                                        Giá: Thấp đến Cao
+                                    </a>
+                                    <a href="" class="select-input__item">
+                                        Giá: Cao đến Thấp
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="home-filter__page">
+                                <span class="home-filter__page-num">
+                                    <span class="home-filter__page-current">1</span>/14
+                                </span>
+                                <div class="home-filter__page-control">
+                                    <a href="" class="home-filter__page-btn home-filter__page-btn--disabled">
+                                        <i class="home-filter__page-icon fas fa-angle-left"></i>
+                                    </a>
+                                    <a href="" class="home-filter__page-btn">
+                                        <i class="home-filter__page-icon fas fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <nav class="mobile-category">
+                            <ul class="mobile-category__list">
+                                <li class="mobile-category__item">
+                                    <a href="" class="mobile-category__link"><span>Dụng cụ & Thiết bị tiện
+                                            ích</span></a>
+                                </li>
+                                <li class="mobile-category__item">
+                                    <a href="" class="mobile-category__link"><span>Thiết bị điện gia dụng</span></a>
+                                </li>
+                                <li class="mobile-category__item">
+                                    <a href="" class="mobile-category__link"><span>Đồ dùng phòng bếp</span></a>
+                                </li>
+                                <li class="mobile-category__item">
+                                    <a href="" class="mobile-category__link"><span>Mỹ phẩm</span></a>
+                                </li>
+                                <li class="mobile-category__item">
+                                    <a href="" class="mobile-category__link"><span>Dưỡng môi</span></a>
+                                </li>
+                                <li class="mobile-category__item">
+                                    <a href="" class="mobile-category__link"><span>Khăn tắm</span></a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <div class="home-product">
+                            <div class="row sm-gutter">
+                                <!-- Product item  -->
+                                <!-- R1  -->
+                                <div class="col l-2-4 m-4 c-6">
+                                    <a class="product-item" href="#">
+                                        <div class="product-item__img"
+                                            style="background-image: url(https://cf.shopee.vn/file/016f33534b47d593c8a9d142c3e579d6_tn)">
+                                        </div>
+                                        <h4 class="product-item__name">
+                                            [GIÁ HỦY DIỆT] Tinh chất Niacinamide 10% + Zinc 1% - The Ordinary
+                                        </h4>
+                                        <div class="product-item__price">
+                                            <!-- <span class="product-item__price-old">300.000đ</span> -->
+                                            <span class="product-item__price-new">187.000đ - 330.000đ</span>
+                                        </div>
+                                        <div class="product-item__info">
+                                            <!-- Liked: product-item__like--liked  -->
+                                            <span class="product-item__like">
+                                                <i class="product-item__like-icon-empty far fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fas fa-heart"></i>
+                                            </span>
+                                            <div class="product-item__rating">
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                            </div>
+                                            <div class="product-item__sold">
+                                                Đã bán 160,4k
+                                            </div>
+                                        </div>
+                                        <div class="product-item__address">
+                                            TP. Hồ Chí Minh
+                                        </div>
+                                        <div class="product-item__favorite">
+                                            <span>Yêu thích+</span>
+                                        </div>
+                                        <div class="product-item__sale-off">
+                                            <span class="product-item__sale-off-percent">11%</span>
+                                            <span class="product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col l-2-4 m-4 c-6">
+                                    <a class="product-item" href="#">
+                                        <div class="product-item__img"
+                                            style="background-image: url(https://cf.shopee.vn/file/29a010cebcbb79120c0afc396c75ebd3_tn)">
+                                        </div>
+                                        <h4 class="product-item__name">
+                                            Kem tái tạo hồi phục da Avene Cicalfate Repair Cream
+                                        </h4>
+                                        <div class="product-item__price">
+                                            <!-- <span class="product-item__price-old">300.000đ</span> -->
+                                            <span class="product-item__price-new">255.000đ - 395.000đ</span>
+                                        </div>
+                                        <div class="product-item__info">
+                                            <!-- Liked: product-item__like--liked  -->
+                                            <span class="product-item__like">
+                                                <i class="product-item__like-icon-empty far fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fas fa-heart"></i>
+                                            </span>
+                                            <div class="product-item__rating">
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                            </div>
+                                            <div class="product-item__sold">
+                                                Đã bán 17.7k
+                                            </div>
+                                        </div>
+                                        <div class="product-item__address">
+                                            TP. Hồ Chí Minh
+                                        </div>
+                                        <div class="product-item__favorite">
+                                            <span>Yêu thích+</span>
+                                        </div>
+                                        <div class="product-item__sale-off">
+                                            <span class="product-item__sale-off-percent">8%</span>
+                                            <span class="product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col l-2-4 m-4 c-6">
+                                    <a class="product-item" href="#">
+                                        <div class="product-item__img"
+                                            style="background-image: url(https://cf.shopee.vn/file/285b2b6edbaee3bc5e882c4147002e62_tn)">
+                                        </div>
+                                        <h4 class="product-item__name">
+                                            Cấp ẩm hồi phục Hyaluronic Acid 2% + B5 - The Ordinary
+                                        </h4>
+                                        <div class="product-item__price">
+                                            <!-- <span class="product-item__price-old">300.000đ</span> -->
+                                            <span class="product-item__price-new">210.000đ - 375.000đ</span>
+                                        </div>
+                                        <div class="product-item__info">
+                                            <!-- Liked: product-item__like--liked  -->
+                                            <span class="product-item__like">
+                                                <i class="product-item__like-icon-empty far fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fas fa-heart"></i>
+                                            </span>
+                                            <div class="product-item__rating">
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                            </div>
+                                            <div class="product-item__sold">
+                                                Đã bán 62,5k
+                                            </div>
+                                        </div>
+                                        <div class="product-item__address">
+                                            TP. Hồ Chí Minh
+                                        </div>
+                                        <div class="product-item__favorite">
+                                            <span>Yêu thích+</span>
+                                        </div>
+                                        <div class="product-item__sale-off">
+                                            <span class="product-item__sale-off-percent">19%</span>
+                                            <span class="product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col l-2-4 m-4 c-6">
+                                    <a class="product-item" href="#">
+                                        <div class="product-item__img"
+                                            style="background-image: url(https://cf.shopee.vn/file/7473b6867aaf154f8430fe07fca6c9b5_tn)">
+                                        </div>
+                                        <h4 class="product-item__name">
+                                            Nước hoa hồng Simple Kind to Skin Soothing Facial Toner
+                                        </h4>
+                                        <div class="product-item__price">
+                                            <span class="product-item__price-old">150.000đ</span>
+                                            <span class="product-item__price-new">105.000đ</span>
+                                        </div>
+                                        <div class="product-item__info">
+                                            <!-- Liked: product-item__like--liked  -->
+                                            <span class="product-item__like">
+                                                <i class="product-item__like-icon-empty far fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fas fa-heart"></i>
+                                            </span>
+                                            <div class="product-item__rating">
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                            </div>
+                                            <div class="product-item__sold">
+                                                Đã bán 17,3k
+                                            </div>
+                                        </div>
+                                        <div class="product-item__address">
+                                            TP. Hồ Chí Minh
+                                        </div>
+                                        <div class="product-item__favorite">
+                                            <span>Yêu thích+</span>
+                                        </div>
+                                        <div class="product-item__sale-off">
+                                            <span class="product-item__sale-off-percent">30%</span>
+                                            <span class="product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col l-2-4 m-4 c-6">
+                                    <a class="product-item" href="#">
+                                        <div class="product-item__img"
+                                            style="background-image: url(https://cf.shopee.vn/file/e26fddfe200f95333e17ea19a0572d72_tn)">
+                                        </div>
+                                        <h4 class="product-item__name">
+                                            Tẩy da chết hóa học Lactic Acid + HA - The Ordinary
+                                        </h4>
+                                        <div class="product-item__price">
+                                            <!-- <span class="product-item__price-old">300.000đ</span> -->
+                                            <span class="product-item__price-new">205.000đ - 210.000đ</span>
+                                        </div>
+                                        <div class="product-item__info">
+                                            <!-- Liked: product-item__like--liked  -->
+                                            <span class="product-item__like">
+                                                <i class="product-item__like-icon-empty far fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fas fa-heart"></i>
+                                            </span>
+                                            <div class="product-item__rating">
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                            </div>
+                                            <div class="product-item__sold">
+                                                Đã bán 27,4k
+                                            </div>
+                                        </div>
+                                        <div class="product-item__address">
+                                            TP. Hồ Chí Minh
+                                        </div>
+                                        <div class="product-item__favorite">
+                                            <span>Yêu thích+</span>
+                                        </div>
+                                        <!-- <div class="product-item__sale-off">
+                                            <span class="product-item__sale-off-percent">13%</span>
+                                            <span class="product-item__sale-off-label">GIẢM</span>
+                                        </div> -->
+                                    </a>
+                                </div>
+                                <!-- R2  -->
+                                <div class="col l-2-4 m-4 c-6">
+                                    <a class="product-item" href="#">
+                                        <div class="product-item__img"
+                                            style="background-image: url(https://cf.shopee.vn/file/bbc32bda17ab50ef241a40e85fd1ca8c_tn)">
+                                        </div>
+                                        <h4 class="product-item__name">
+                                            Thanh tẩy da AHA 30% + BHA 2% Peeling Solution - The Ordinary
+                                        </h4>
+                                        <div class="product-item__price">
+                                            <span class="product-item__price-old">300.000đ</span>
+                                            <span class="product-item__price-new">260.000đ</span>
+                                        </div>
+                                        <div class="product-item__info">
+                                            <!-- Liked: product-item__like--liked  -->
+                                            <span class="product-item__like">
+                                                <i class="product-item__like-icon-empty far fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fas fa-heart"></i>
+                                            </span>
+                                            <div class="product-item__rating">
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                            </div>
+                                            <div class="product-item__sold">
+                                                Đã bán 20,7k
+                                            </div>
+                                        </div>
+                                        <div class="product-item__address">
+                                            TP. Hồ Chí Minh
+                                        </div>
+                                        <div class="product-item__favorite">
+                                            <span>Yêu thích+</span>
+                                        </div>
+                                        <div class="product-item__sale-off">
+                                            <span class="product-item__sale-off-percent">13%</span>
+                                            <span class="product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col l-2-4 m-4 c-6">
+                                    <a class="product-item" href="#">
+                                        <div class="product-item__img"
+                                            style="background-image: url(https://cf.shopee.vn/file/002451b26218460264830f4bddb92a3a_tn)">
+                                        </div>
+                                        <h4 class="product-item__name">
+                                            Kem dưỡng Natural Moisturizing Factors + HA - The Ordinary
+                                        </h4>
+                                        <div class="product-item__price">
+                                            <!-- <span class="product-item__price-old">300.000đ</span> -->
+                                            <span class="product-item__price-new">180.000đ - 250.000đ</span>
+                                        </div>
+                                        <div class="product-item__info">
+                                            <!-- Liked: product-item__like--liked  -->
+                                            <span class="product-item__like">
+                                                <i class="product-item__like-icon-empty far fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fas fa-heart"></i>
+                                            </span>
+                                            <div class="product-item__rating">
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                            </div>
+                                            <div class="product-item__sold">
+                                                Đã bán 23,6k
+                                            </div>
+                                        </div>
+                                        <div class="product-item__address">
+                                            TP. Hồ Chí Minh
+                                        </div>
+                                        <div class="product-item__favorite">
+                                            <span>Yêu thích+</span>
+                                        </div>
+                                        <div class="product-item__sale-off">
+                                            <span class="product-item__sale-off-percent">10%</span>
+                                            <span class="product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col l-2-4 m-4 c-6">
+                                    <a class="product-item" href="#">
+                                        <div class="product-item__img"
+                                            style="background-image: url(https://cf.shopee.vn/file/04fd5bab8a4da6966063a8583c2d4051_tn)">
+                                        </div>
+                                        <h4 class="product-item__name">
+                                            Tẩy da chết môi Beauty Treats Lip Scrub
+                                        </h4>
+                                        <div class="product-item__price">
+                                            <!-- <span class="product-item__price-old">300.000đ</span> -->
+                                            <span class="product-item__price-new">48.000đ</span>
+                                        </div>
+                                        <div class="product-item__info">
+                                            <!-- Liked: product-item__like--liked  -->
+                                            <span class="product-item__like">
+                                                <i class="product-item__like-icon-empty far fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fas fa-heart"></i>
+                                            </span>
+                                            <div class="product-item__rating">
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                            </div>
+                                            <div class="product-item__sold">
+                                                Đã bán 6,6k
+                                            </div>
+                                        </div>
+                                        <div class="product-item__address">
+                                            TP. Hồ Chí Minh
+                                        </div>
+                                        <div class="product-item__favorite">
+                                            <span>Yêu thích+</span>
+                                        </div>
+                                        <!-- <div class="product-item__sale-off">
+                                            <span class="product-item__sale-off-percent">13%</span>
+                                            <span class="product-item__sale-off-label">GIẢM</span>
+                                        </div> -->
+                                    </a>
+                                </div>
+                                <div class="col l-2-4 m-4 c-6">
+                                    <a class="product-item" href="#">
+                                        <div class="product-item__img"
+                                            style="background-image: url(	https://cf.shopee.vn/file/86aa8ebb5e477d6a2da5793e571cab85_tn)">
+                                        </div>
+                                        <h4 class="product-item__name">
+                                            Gel dưỡng Neutrogena Hydro Boost Water/ Aqua Gel
+                                        </h4>
+                                        <div class="product-item__price">
+                                            <span class="product-item__price-old">350.000đ</span>
+                                            <span class="product-item__price-new">279.000đ</span>
+                                        </div>
+                                        <div class="product-item__info">
+                                            <!-- Liked: product-item__like--liked  -->
+                                            <span class="product-item__like">
+                                                <i class="product-item__like-icon-empty far fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fas fa-heart"></i>
+                                            </span>
+                                            <div class="product-item__rating">
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                            </div>
+                                            <div class="product-item__sold">
+                                                Đã bán 21,8k
+                                            </div>
+                                        </div>
+                                        <div class="product-item__address">
+                                            TP. Hồ Chí Minh
+                                        </div>
+                                        <div class="product-item__favorite">
+                                            <span>Yêu thích+</span>
+                                        </div>
+                                        <div class="product-item__sale-off">
+                                            <span class="product-item__sale-off-percent">20%</span>
+                                            <span class="product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col l-2-4 m-4 c-6">
+                                    <a class="product-item" href="#">
+                                        <div class="product-item__img"
+                                            style="background-image: url(https://cf.shopee.vn/file/c58378760dfd3e1197c4c9127cb94e1a_tn)">
+                                        </div>
+                                        <h4 class="product-item__name">
+                                            [GIÁ HỦY DIỆT] Kem dưỡng La Roche Posay Cicaplast Baume B5
+                                        </h4>
+                                        <div class="product-item__price">
+                                            <!-- <span class="product-item__price-old">300.000đ</span> -->
+                                            <span class="product-item__price-new">240.000đ - 359.000đ</span>
+                                        </div>
+                                        <div class="product-item__info">
+                                            <!-- Liked: product-item__like--liked  -->
+                                            <span class="product-item__like">
+                                                <i class="product-item__like-icon-empty far fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fas fa-heart"></i>
+                                            </span>
+                                            <div class="product-item__rating">
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                                <i class="product-item__rating--gold fas fa-star"></i>
+                                            </div>
+                                            <div class="product-item__sold">
+                                                Đã bán 7,5k
+                                            </div>
+                                        </div>
+                                        <div class="product-item__address">
+                                            TP. Hồ Chí Minh
+                                        </div>
+                                        <div class="product-item__favorite">
+                                            <span>Yêu thích+</span>
+                                        </div>
+                                        <div class="product-item__sale-off">
+                                            <span class="product-item__sale-off-percent">14%</span>
+                                            <span class="product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pagination home-product__pagination">
+                            <a href="#" class="pagination__item">
+                                <i class="pagination__icon fas fa-chevron-left"></i>
+                            </a>
+                            <a href="#" class="pagination__item pagination__item--active">1</a>
+                            <a href="#" class="pagination__item">2</a>
+                            <a href="#" class="pagination__item">3</a>
+                            <a href="#" class="pagination__item">4</a>
+                            <a href="#" class="pagination__item">5</a>
+                            <div class="pagination__item pagination__item--none">...</div>
+                            <a href="#" class="pagination__item">
+                                <i class="pagination__icon fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="grid wide footer__content">
+                <div class="row">
+                    <div class="l-2-4 m-4 c-6">
+                        <ul class="footer__list">
+                            <span class="footer__list-heading">
+                                CHĂM SÓC KHÁCH HÀNG
+                            </span>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    Trung tâm trợ giúp
+                                </a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    TickID mail
+                                </a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    Hướng dẫn mua hàng
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="l-2-4 m-4 c-6">
+                        <ul class="footer__list">
+                            <span class="footer__list-heading">
+                                VỀ TICKID
+                            </span>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    Giới thiệu về TickID Việt Nam
+                                </a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    Tuyển dụng
+                                </a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    Điều khoản TickID
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="l-2-4 m-4 c-6">
+                        <ul class="footer__list">
+                            <span class="footer__list-heading">
+                                DANH MỤC
+                            </span>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    Trang điểm mắt
+                                </a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    Trang điểm mặt
+                                </a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    Trang điểm môi
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="l-2-4 m-4 c-6">
+                        <ul class="footer__list">
+                            <span class="footer__list-heading">
+                                THEO DÕI CHÚNG TÔI TRÊN
+                            </span>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    <i class="footer__item-icon fab fa-facebook"></i>
+                                    Facebook
+                                </a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    <i class="footer__item-icon fab fa-instagram-square"></i>
+                                    Instagram
+                                </a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__item-link">
+                                    <i class="footer__item-icon fab fa-linkedin"></i>
+                                    Linkedin
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="l-2-4 m-8 c-12">
+                        <ul class="footer__list">
+                            <span class="footer__list-heading">
+                                VÀO CỬA HÀNG TRÊN ỨNG DỤNG TICKID
+                            </span>
+                            <li class="footer__download">
+                                <img src="./assets/img/header_qr/header_qr.png" alt="QR" class="footer__download-qr">
+                                <div class="footer__download-app">
+                                    <a href="" class="footer__download-app-link">
+                                        <img src="./assets/img/header_qr/header_qr_appstore.png" alt="App Store"
+                                            class="footer__download-app-img">
+                                    </a>
+                                    <a href="" class="footer__download-app-link">
+                                        <img src="./assets/img/header_qr/header_qr_ggplay.png" alt="Google Play"
+                                            class="footer__download-app-img">
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="grid wide">
+                    <p class="footer__bottom-text">
+                        © 2021 - Bản quyền thuộc về công ty người nhà cuê Thaiprodep
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+<!--    <div class="modal">
+        <div class="modal__overlay">
+
+        </div>
+
+        <div class="modal__body">
+             Auth form Register 
+            <div class="auth-form">
+                <div class="auth-form__container">
+                    <div class="auth-form__header">
+                        <h3 class="auth-form__heading">Đăng ký</h3>
+                        <span class="auth-form__swtich-btn">Đăng nhập</span>
+                    </div>
+
+                    <div class="auth-form__form">
+                        <div class="auth-form__group">
+                            <input type="email" class="auth-form__input" placeholder="Email của bạn">
+                        </div>
+                        <div class="auth-form__group">
+                            <input type="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
+                        </div>
+                        <div class="auth-form__group">
+                            <input type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu">
+                        </div>
+                    </div>
+
+                    <div class="auth-form__aside">
+                        <p class="auth-form__policy-text">Bằng việc đăng kí, bạn đã đồng ý với Shopee về
+                            <a href="" class="auth-form__text-link">Điều khoản dịch vụ</a> &
+                            <a href="" class="auth-form__text-link">Chính sách bảo mật</a>
+                        </p>
+                    </div>
+
+                    <div class="auth-form__controls">
+                        <button class="btn btn--normal">TRỞ LẠI</button>
+                        <button class="btn btn--primary">ĐĂNG KÝ</button>
+                    </div>
+                </div>
+
+                <div class="auth-form__social">
+                    <a href="" class="btn btn--small auth-form--fb-btn">
+                        <i class="auth-form__social-icon fab fa-facebook-square"></i>
+                        Kết nối với Facebook
+                    </a>
+                    <a href="" class="btn btn--small auth-form--gg-btn">
+                        <i class="auth-form__social-icon fab fa-google"></i>
+                        Kết nối với Google
+                    </a>
+                </div>
+            </div> -->
+
+<!--             Auth form Login 
+            <div class="auth-form">
+                <div class="auth-form__container">
+                    <div class="auth-form__header">
+                        <h3 class="auth-form__heading">Đăng nhập</h3>
+                        <span class="auth-form__swtich-btn">Đăng ký</span>
+                    </div>
+
+                    <div class="auth-form__form">
+                        <div class="auth-form__group">
+                            <input type="email" class="auth-form__input" placeholder="Email của bạn">
+                        </div>
+                        <div class="auth-form__group">
+                            <input type="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
+                        </div>
+                    </div>
+
+                    <div class="auth-form__aside">
+                        <div class="auth-form__help">
+                            <a href="" class="auth-form__help-link auth-form--forgot">Quên mật khẩu</a>
+                            <span class="auth-form__separate"></span>
+                            <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
+                        </div>
+                    </div>
+
+                    <div class="auth-form__controls">
+                        <button class="btn btn--normal">TRỞ LẠI</button>
+                        <button class="btn btn--primary">ĐĂNG NHẬP</button>
+                    </div>
+                </div>
+
+                <div class="auth-form__social">
+                    <a href="" class="btn btn--small auth-form--fb-btn">
+                        <i class="auth-form__social-icon fab fa-facebook-square"></i>
+                        Kết nối với Facebook
+                    </a>
+                    <a href="" class="btn btn--small auth-form--gg-btn">
+                        <i class="auth-form__social-icon fab fa-google"></i>
+                        Kết nối với Google
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</body>
+
+</html>
