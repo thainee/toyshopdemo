@@ -35,7 +35,7 @@
 
                         <div class="col l-10 m-12 c-12">
                             <!-- Home filter -->                    
-                            <jsp:include page="home-filter.jsp"/>
+                            <jsp:include page="home-product.jsp"/>
                         </div>
                     </div>
                 </div>

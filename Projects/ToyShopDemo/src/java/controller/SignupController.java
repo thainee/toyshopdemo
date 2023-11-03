@@ -47,6 +47,10 @@ public class SignupController extends HttpServlet {
             User user = userService.authenticate(email, password);
             session.setAttribute("user", user);
             response.sendRedirect("/toyshop/home");
+        } else {
+            String msg = "Email đã bị trùng";
+            request.setAttribute("msg", msg);
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
         }
     }
 

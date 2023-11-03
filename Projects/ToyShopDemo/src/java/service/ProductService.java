@@ -56,12 +56,16 @@ public class ProductService {
         return orderDAO.getOrderById(id);
     }
     
-    public Order getOrderByUserId(int id) {
-        return orderDAO.getOrderByUserId(id);
+    public List<Order> getOrdersByUserId(int id) {
+        return orderDAO.getOrdersByUserId(id);
     }
     
     public List<OrderItem> getOrderItemsByOrderId(int id) {
         return orderItemDAO.getOrderItemsByOrderId(id);
+    }
+    
+    public List<OrderItem> getOrderItemsOfOrderByUserId(int userId) {
+        return orderItemDAO.getOrderItemsByOrderId(userId);
     }
 
     public Category getCategoryById(int id) {
@@ -103,6 +107,11 @@ public class ProductService {
     public boolean addNewCategory(String name, String description) {
         return categoryDAO.addCategory(name, description);
     }
+    
+    public boolean addNewOrderItem(int orderId, int productId, int quantity) {
+        return orderItemDAO.addOrderItem(orderId, productId, quantity);
+    }
+
 
     public boolean updateCategory(int id, String name, String description) {
         return categoryDAO.updateCategory(id, name, description);
@@ -110,6 +119,10 @@ public class ProductService {
 
     public boolean deleteCategory(int id) {
         return categoryDAO.deleteCategory(id);
+    }
+    
+    public boolean deleteOrderItem(int orderId, int productId) {
+        return orderItemDAO.deleteOrderItem(orderId, productId);
     }
 
     public boolean addNewProductCategory(int productId, int categoryId) {

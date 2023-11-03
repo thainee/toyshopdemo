@@ -129,6 +129,35 @@ public class ProductDAO extends DBContext {
 
         return products;
     }
+    
+    public List<Product> getProductsOfOrderByUserId(int userId) {
+        List<Product> products = new ArrayList<>();
+        try {
+            String sql = "SELECT p.id, p.name, p.image FROM order_items oi "
+                    + "JOIN orders o ON o.id = oi.order_id "
+                    + "JOIN products p ON p.id = oi.product_id "
+                    + "WHERE o.user_id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, userId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setBrand(rs.getString("brand"));
+                product.setDescription(rs.getString("description"));
+                product.setDiscount(rs.getInt("discount"));
+                product.setPrice(rs.getInt("price"));
+                product.setImage(rs.getString("image"));
+
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return products;
+    }
 
     public List<Product> getProductsByCategory(String categoryName, int start, int total) {
         List<Product> products = new ArrayList<>();
@@ -234,13 +263,11 @@ public class ProductDAO extends DBContext {
             statement.setString(6, image);
             statement.setInt(7, id);
 
-            int updateCount = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }
@@ -257,13 +284,11 @@ public class ProductDAO extends DBContext {
             statement.setInt(5, price);
             statement.setString(6, image);
 
-            int updateCount = statement.executeUpdate();
-
-            if (updateCount == 0) {
-                return false;
-            }
+            statement.executeUpdate();
+            
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }
@@ -280,15 +305,12 @@ public class ProductDAO extends DBContext {
             statement.setInt(2, id);
             statement.setInt(3, id);
 
-            int updateCount = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-
         return true;
     }
 

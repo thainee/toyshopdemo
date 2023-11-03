@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <header class="header">
     <div class="grid wide">
         <nav class="navbar">
@@ -101,7 +101,7 @@
                                     <span class="navbar__user-name">${sessionScope.user.name}</span>
                                 </a> 
                                 <div class="user-menu">
-                                    <a href="#" class="user-menu__item">Tài khoản của tôi</a>
+                                    <a href="userinfo" class="user-menu__item">Tài khoản của tôi</a>
                                     <a href="#" class="user-menu__item">Đơn mua</a>
                                     <form action="logout" class="">
                                         <button type="submit" class="user-menu__item user-menu-item--separate btn btn--default">Đăng xuất</button>
@@ -154,90 +154,59 @@
             </form>
 
             <div class="header-w-search__cart">
-                <!-- Cart list  -->
-                <div class="cart-drawer">
-                    <i class="header-w-search__cart-img fas fa-shopping-cart"></i>
-
-                    <c:choose>
-                        <c:when test="${empty sessionScope.user}">
-                            <div class="cart-drawer__list cart-drawer--no-cart">
-                                <!-- No cart: cart-drawer--no-cart  -->
-                                <img src="./assets/img/header_cart/no__cart.png" alt="" class="cart-drawer-no-cart__img">
-                                <span class="cart-drawer-no-cart__msg">Chưa có sản phẩm, vui lòng đăng nhập để chọn sản phẩm</span>
-                            </c:when>
-
-                            <c:otherwise>
-                                <div class="cart-drawer__list">
-                                    <!-- Cart list  -->
-                                    <span class="cart-drawer__quantity">3</span>
-                                    <div class="cart-drawer__list-header">
-                                        Sản phẩm mới thêm
-                                    </div>
-
-                                    <div class="cart-drawer__items">
-                                        <img src="https://cf.shopee.vn/file/6799d0e1227876dad94b185f51d18d04_tn" alt="" class="cart-drawer__items-img">
-                                        <div class="cart-drawer__items-info">
-                                            <div class="cart-drawer__items-intro">
-                                                <div class="cart-drawer__items-header">Nước rửa mắt Eyebon</div>
-                                                <div class="cart-drawer__items-wrap">
-                                                    <div class="cart-drawer__items-price">350.000đ </div>
-                                                    <div class="cart-drawer__items-multiply">x</div>
-                                                    <div class="cart-drawer__items-quantity">2</div>
-                                                </div>
-                                            </div>
-                                            <div class="cart-drawer__items-wrap">
-                                                <div class="cart-drawer__items-classify">Phân loại hàng: Hồng mới</div>
-                                                <div class="cart-drawer__items-remove">Xóa</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="cart-drawer__items">
-                                        <img src="https://cf.shopee.vn/file/f91ed2d18d9089cf4f97ebac77b4b83f_tn" alt="" class="cart-drawer__items-img">
-                                        <div class="cart-drawer__items-info">
-                                            <div class="cart-drawer__items-intro">
-                                                <div class="cart-drawer__items-header">Khẩu trang chống sương mù</div>
-                                                <div class="cart-drawer__items-wrap">
-                                                    <div class="cart-drawer__items-price">79.000đ</div>
-                                                    <div class="cart-drawer__items-multiply">x</div>
-                                                    <div class="cart-drawer__items-quantity">1</div>
-                                                </div>
-                                            </div>
-                                            <div class="cart-drawer__items-wrap">
-                                                <div class="cart-drawer__items-classify">Phân loại hàng: Đen</div>
-                                                <div class="cart-drawer__items-remove">Xóa</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="cart-drawer__items">
-                                        <img src="https://cf.shopee.vn/file/9a3e039acfe997d18ea31dfedaab0df8_tn" alt="" class="cart-drawer__items-img">
-                                        <div class="cart-drawer__items-info">
-                                            <div class="cart-drawer__items-intro">
-                                                <div class="cart-drawer__items-header">Khẩu trang Xiaomi KN95</div>
-                                                <div class="cart-drawer__items-wrap">
-                                                    <div class="cart-drawer__items-price">72.000đ</div>
-                                                    <div class="cart-drawer__items-multiply">x</div>
-                                                    <div class="cart-drawer__items-quantity">1</div>
-                                                </div>
-                                            </div>
-                                            <div class="cart-drawer__items-wrap">
-                                                <div class="cart-drawer__items-classify">Phân loại hàng: Đen</div>
-                                                <div class="cart-drawer__items-remove">Xóa</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="cart-drawer__list-view btn btn--primary">Xem giỏ hàng</a>
+                <c:choose>
+                    <c:when test="${empty sessionScope.user}">
+                        <div class="cart-drawer cart-drawer--no-cart">
+                            <i class="header-w-search__cart-img fas fa-shopping-cart"></i>
+                            <!-- No cart: cart-drawer--no-cart  -->
+                            <!-- Cart list  -->
+                            <div class="cart-drawer__list">
+                                <img src="./assets/img/header_cart/no__cart.png" alt=""
+                                     class="cart-drawer-no-cart__img">
+                                <span class="cart-drawer-no-cart__msg">Chưa có sản phẩm, vui lòng đăng nhập</span>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <!-- Cart list  -->
+                        <div class="cart-drawer">
+                            <i class="header-w-search__cart-img fas fa-shopping-cart"></i>
+                            <c:if test="${sessionScope.orderItemsSize != 0}">
+                                <span class="cart-drawer__quantity">${sessionScope.orderItemsSize}</span>
+                            </c:if>
+                            <!-- Cart list  -->
+                            <div class="cart-drawer__list">
+                                <div class="cart-drawer__list-header">
+                                    Sản phẩm mới thêm
                                 </div>
-                            </c:otherwise>
-                        </c:choose>
-
-                    </div>
-                </div>
+                                <c:forEach var="orderItem" items="${sessionScope.orderItems}">
+                                    <a href="homedetail?id=${orderItem.product.id}" class="cart-drawer__items">
+                                        <img src="${orderItem.product.image}" alt=""
+                                             class="cart-drawer__items-img">
+                                        <div class="cart-drawer__items-info">
+                                            <div class="cart-drawer__items-intro">
+                                                <div class="cart-drawer__items-header">${orderItem.product.name}</div>
+                                                <div class="cart-drawer__items-wrap">
+                                                    <div class="cart-drawer__items-price"><fmt:formatNumber value="${orderItem.product.price}" type="currency"/></div>
+                                                    <div class="cart-drawer__items-multiply">x</div>
+                                                    <div class="cart-drawer__items-quantity">${orderItem.quantity}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </c:forEach>
+                                <a href="order" class="cart-drawer__list-view btn btn--primary">Xem giỏ hàng</a>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
-        <div class="sort-bar">
-            <a href="" class="sort-bar__item sort-bar--active">Liên quan</a>
-            <a href="" class="sort-bar__item">Mới nhất</a>
-            <a href="" class="sort-bar__item">Bán chạy</a>
-            <a href="" class="sort-bar__item">Giá</a>
-        </div>
+    </div>
+    <div class="sort-bar">
+        <a href="" class="sort-bar__item sort-bar--active">Liên quan</a>
+        <a href="" class="sort-bar__item">Mới nhất</a>
+        <a href="" class="sort-bar__item">Bán chạy</a>
+        <a href="" class="sort-bar__item">Giá</a>
+    </div>
 </header>

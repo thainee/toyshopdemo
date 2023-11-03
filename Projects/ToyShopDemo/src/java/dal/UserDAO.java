@@ -44,7 +44,7 @@ public class UserDAO extends DBContext {
             String sql = "SELECT id, name, email, "
                     + "password, phone_number, avatar, role_id "
                     + "FROM users "
-                    + "WHREE id = ?";
+                    + "WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
@@ -71,7 +71,7 @@ public class UserDAO extends DBContext {
             String sql = "SELECT id, name, email, "
                     + "password, phone_number, avatar, role_id "
                     + "FROM users "
-                    + "WHREE name = ?";
+                    + "WHERE name = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, "%" + name + "%");
             ResultSet rs = statement.executeQuery();
@@ -132,13 +132,53 @@ public class UserDAO extends DBContext {
             statement.setString(3, password);
             statement.setString(4, phoneNumber);
 
-            int updateCount = statement.executeUpdate();
-
-            if (updateCount == 0) {
-                return false;
-            }
+            statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean updateUser(int id, String name, String password, String phone_number, String avatar) {
+        try {
+            String sql = "UPDATE users "
+                    + "SET name = ?, password = ?, phone_number = ?, "
+                    + "avatar = ? "
+                    + "WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.setString(2, password);
+            statement.setString(3, phone_number);
+            statement.setString(4, avatar);
+            statement.setInt(5, id);
+
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean updateUser(int id, String name, String phone_number, String avatar) {
+        try {
+            String sql = "UPDATE users "
+                    + "SET name = ?, phone_number = ?, "
+                    + "avatar = ? "
+                    + "WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.setString(2, phone_number);
+            statement.setString(3, avatar);
+            statement.setInt(4, id);
+
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }
@@ -150,13 +190,11 @@ public class UserDAO extends DBContext {
             statement.setString(1, email);
             statement.setString(2, password);
 
-            int updateCount = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
 
         return true;

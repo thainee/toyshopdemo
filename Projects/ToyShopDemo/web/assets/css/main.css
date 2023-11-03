@@ -653,6 +653,7 @@
 }
 
 .cart-drawer__items {
+    text-decoration: none;
     padding: 10px;
     display: flex;
     cursor: pointer;

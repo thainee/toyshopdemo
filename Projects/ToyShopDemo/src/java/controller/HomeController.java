@@ -7,9 +7,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import model.Category;
+import model.Order;
+import model.OrderItem;
 import model.Product;
+import model.User;
 import service.ProductService;
 
 @WebServlet(name = "HomeController", urlPatterns = {"/home"})
@@ -33,7 +37,25 @@ public class HomeController extends HttpServlet {
         int startPage;
         int endPage;
         List<Product> products;
-
+        int orderItemsSize = 0;
+        
+        //set Order - cart 
+        List<Order> orders;
+        User user = (User) session.getAttribute("user");
+        List<OrderItem> orderItems = new ArrayList<>();
+        Order currentOrder = null;
+        if (user != null) {
+            orders = productService.getOrdersByUserId(user.getId());
+            for (Order order : orders) {
+                if (order.getOrderStatus().equalsIgnoreCase("Opening")) {
+                    orderItems = productService.getOrderItemsByOrderId(order.getId());
+                    orderItemsSize = orderItems.size();
+                    currentOrder = order;
+                    break;
+                }
+            }
+        }
+        
         //setCurrentPage
         if (currentPaginationPage_str == null) {
             currentPaginationPage = 1;
@@ -55,7 +77,6 @@ public class HomeController extends HttpServlet {
             session.setAttribute("categoryName", category);
         }
         List<Category> categories = productService.getAllCategories();
-        
 
         //set Pagination info
         totalPaginationPage = totalProducts / totalCount;
@@ -72,20 +93,23 @@ public class HomeController extends HttpServlet {
         } else {
             endPage = totalPaginationPage;
         }
-        
+
         request.setAttribute("products", products);
         request.setAttribute("categories", categories);
         request.setAttribute("currentPaginationPage", currentPaginationPage);
         request.setAttribute("startPage", startPage);
         request.setAttribute("endPage", endPage);
         request.setAttribute("totalPaginationPage", totalPaginationPage);
+        session.setAttribute("currentOrder", currentOrder);
+        session.setAttribute("orderItems", orderItems);
+        session.setAttribute("orderItemsSize", orderItemsSize);
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     @Override

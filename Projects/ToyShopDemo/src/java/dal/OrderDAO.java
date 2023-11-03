@@ -94,10 +94,10 @@ public class OrderDAO extends DBContext {
         return order;
     }
 
-    public Order getOrderByUserId(int userId) {
-        Order order = null;
+    public List<Order> getOrdersByUserId(int userId) {
+        List<Order> orders = new ArrayList<>();
         try {
-            String sql = "SELECT id AS order_id, user_id, shipping_address_id, "
+            String sql = "SELECT id, user_id, shipping_address_id, "
                     + "payment_method_id, order_status, total, updated_at "
                     + "FROM orders "
                     + "WHERE user_id = ?";
@@ -105,19 +105,21 @@ public class OrderDAO extends DBContext {
             statement.setInt(1, userId);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                order = new Order();
-                order.setId(rs.getInt("order_id"));
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
                 order.setUserId(rs.getInt("user_id"));
                 order.setShippingAddressId(rs.getInt("shipping_address_id"));
                 order.setTotal(rs.getDouble("total"));
                 order.setOrderStatus(rs.getString("order_status"));
                 order.setUpdatedAt(rs.getDate("updated_at"));
+                
+                orders.add(order);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return order;
+        return orders;
     }
 
     public int countOrders() {
@@ -149,13 +151,11 @@ public class OrderDAO extends DBContext {
             statement.setDouble(4, total);
             statement.setInt(5, id);
 
-            int updateCount = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }
@@ -169,13 +169,11 @@ public class OrderDAO extends DBContext {
             statement.setString(1, order_status);
             statement.setInt(2, id);
 
-            int updateCount = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }
@@ -191,13 +189,11 @@ public class OrderDAO extends DBContext {
             statement.setString(4, order_status);
             statement.setDouble(5, total);
 
-            int updateCount = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }

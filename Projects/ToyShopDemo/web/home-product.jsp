@@ -5,7 +5,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-<div class="home-filter hide-on-tablet-mobile">
+<!--<div class="home-filter hide-on-tablet-mobile">
     <span class="home-filter__label">
         Sắp xếp theo
     </span>
@@ -38,7 +38,7 @@
             </a>
         </div>
     </div>
-</div>
+</div>-->
 
 <!--  Mobile Category  -->
 <jsp:include page="mobile-category.jsp"/>
@@ -79,7 +79,7 @@
                             <i class="product-item__rating--gold fas fa-star"></i>
                         </div>
                         <div class="product-item__sold">
-                            
+
                         </div>
                     </div>
                     <div class="product-item__address">

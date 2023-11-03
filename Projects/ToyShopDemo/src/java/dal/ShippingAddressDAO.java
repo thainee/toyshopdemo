@@ -38,9 +38,9 @@ public class ShippingAddressDAO extends DBContext {
 
         return shippingAddress;
     }
-    
-        public ShippingAddress getShippingAddressByUserId(int userId) {
-        ShippingAddress shippingAddress = null;
+
+    public List<ShippingAddress> getShippingAddressesByUserId(int userId) {
+        List<ShippingAddress> shippingAddresses = new ArrayList<>();
         try {
             String sql = "SELECT id, user_id, name, phone_number, "
                     + "address_line, city, district, commune "
@@ -50,7 +50,7 @@ public class ShippingAddressDAO extends DBContext {
             statement.setInt(1, userId);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                shippingAddress = new ShippingAddress();
+                ShippingAddress shippingAddress = new ShippingAddress();
                 shippingAddress.setId(rs.getInt("id"));
                 shippingAddress.setUserId(rs.getInt("user_id"));
                 shippingAddress.setName(rs.getString("name"));
@@ -59,34 +59,82 @@ public class ShippingAddressDAO extends DBContext {
                 shippingAddress.setCity(rs.getString("city"));
                 shippingAddress.setDistrict(rs.getString("district"));
                 shippingAddress.setCommune(rs.getString("commune"));
+
+                shippingAddresses.add(shippingAddress);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return shippingAddress;
+        return shippingAddresses;
     }
 
-    public boolean addShippingAddress(int userId, String name, String phoneNumber, String addressLine, String city, String disctrict, String commune) {
+    public boolean addShippingAddress(int userId, String name, String phoneNumber, String addressLine, String city, String district, String commune) {
         try {
-            String sql = "INSERT INTO shipping_addresses (user_id, name, phone_number, address_line, city, disctrict, commune) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO shipping_addresses (name, phone_number, address_line, city, district, commune, user_id) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?) ";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, userId);
-            statement.setString(2, name);
-            statement.setString(3, phoneNumber);
-            statement.setString(4, addressLine);
-            statement.setString(5, city);
-            statement.setString(6, disctrict);
-            statement.setString(7, commune);
+            statement.setString(1, name);
+            statement.setString(2, phoneNumber);
+            statement.setString(3, addressLine);
+            statement.setString(4, city);
+            statement.setString(5, district);
+            statement.setString(6, commune);
+            statement.setInt(7, userId);
 
-            int updateCount = statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
+            statement.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean updateShippingAddress(int id, String name, String phoneNumber, String addressLine, String city, String disctrict, String commune) {
+        try {
+            String sql = "UPDATE shipping_addresses "
+                    + "SET name = ?, phone_number = ?, address_line = ?, "
+                    + "city = ?, district = ?, commune = ? "
+                    + "WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.setString(2, phoneNumber);
+            statement.setString(3, addressLine);
+            statement.setString(4, city);
+            statement.setString(5, disctrict);
+            statement.setString(6, commune);
+            statement.setInt(7, id);
+
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean updateShippingAddress(int userId, int id, String name, String phoneNumber, String addressLine, String city, String disctrict, String commune) {
+        try {
+            String sql = "UPDATE shipping_addresses "
+                    + "SET name = ?, phone_number = ?, address_line = ?, "
+                    + "city = ?, district = ?, commune = ? "
+                    + "WHERE id = ? AND user_id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.setString(2, phoneNumber);
+            statement.setString(3, addressLine);
+            statement.setString(4, city);
+            statement.setString(5, disctrict);
+            statement.setString(6, commune);
+            statement.setInt(7, id);
+            statement.setInt(8, userId);
+
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }
@@ -97,16 +145,28 @@ public class ShippingAddressDAO extends DBContext {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
 
-            int updateCount = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-
         return true;
     }
 
+    public int getLastId() {
+        int id = 0;
+        try {
+            String sql = "SELECT IDENT_CURRENT('shipping_addresses') - 1 AS currentId;";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                id = (rs.getInt("currentId"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
 }

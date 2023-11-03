@@ -76,6 +76,8 @@
                                     </div>
                                     <form class="product-right__quantity" action="order" method="post">
                                         <div class='quantity'>
+                                            <input type="hidden" name="productId" value="${product.id}">
+                                            <input type="hidden" name="orderId" value="${sessionScope.currentOrder.id}">
                                             <input type='button' value='-' class='qtyminus minus' field='quantity' />
                                             <input type='text' name='quantity' value='1' class='qty' />
                                             <input type='button' value='+' class='qtyplus plus' field='quantity' />

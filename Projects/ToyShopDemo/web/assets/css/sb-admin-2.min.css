@@ -9156,3 +9156,14 @@ footer.sticky-footer .copyright{
 body.sidebar-toggled footer.sticky-footer{
     width:100%
 }
+
+.input#password:invalid {
+    border-color: red;
+}
+
+.password-error-tag {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    bottom: -15px;
+}

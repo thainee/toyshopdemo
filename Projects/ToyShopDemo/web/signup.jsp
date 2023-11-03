@@ -26,16 +26,28 @@
                 event.preventDefault();
             }
 
-            function checkRetypePassword() {
-// Get the values of the password and retype password fields.
-                const password = document.getElementById('password').value;
-                const retypePassword = document.getElementById('retypePassword').value;
-                const passwordError = document.getElementById('passwordError');
+            function validatePassword() {
+                const retypePassword = document.getElementById('retypePassword');
+                const password = document.getElementById('password');
 
-// Check if the password and retype password fields match.
-                if (password !== retypePassword) {
-                    passwordError.textContent = 'Mật khẩu nhập lại không khớp.';
+                // Check if the password is valid. 6 character + include 1 upper, 1 lower, 1 num, 1 special char
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+]).{6,}$/;
+                if (!passwordRegex.test(password.value)) {
+                    alert('Mật khẩu phải có ít nhất 6 ký tự, 1 chữ thường, 1 chữ hoa, 1 chữ số và 1 ký tự đặc biệt.');
                     event.preventDefault();
+                    return false;
+                }
+
+                // Check if the retypePassword equals the password.
+                if (retypePassword.value !== password.value) {
+                    alert('Mật khẩu nhập lại không khớp.');
+                    event.preventDefault();
+                    return false;
+                }
+
+                // If all of the checks pass, return true.
+                if (passwordRegex.test(password.value) && retypePassword.value === password.value){
+                    return true;
                 }
             }
         </script>
@@ -52,7 +64,7 @@
 
             <div class="modal__body">
                 <!-- Auth form Sign up -->
-                <form action="signup" method="post" class="auth-form" onsubmit="checkRetypePassword()">
+                <form action="signup" method="post" class="auth-form" onsubmit="validatePassword()">
                     <div class="auth-form__container">
                         <div class="auth-form__header">
                             <h3 class="auth-form__heading">Đăng ký</h3>
@@ -68,6 +80,7 @@
                             </div>
                             <div class="auth-form__group">
                                 <input type="email" name="email" class="auth-form__input" placeholder="Email của bạn" required>
+                                <p id="passwordError" style="color: red; padding: 0 10px; font-size: 13px">${msg}</p>
                             </div>
                             <div class="auth-form__group">
                                 <input id="password" type="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn" required>
@@ -75,7 +88,6 @@
 
                             <div class="auth-form__group">
                                 <input id="retypePassword"type="password" name="retypePassword" class="auth-form__input" placeholder="Nhập lại mật khẩu" required>
-                                <p id="passwordError" style="color: red; padding: 0 10px; font-size: 13px"></p>
                             </div>
                         </div>
 
