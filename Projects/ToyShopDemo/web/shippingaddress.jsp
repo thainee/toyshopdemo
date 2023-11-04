@@ -73,8 +73,9 @@
                                 <hr>
                             </c:forEach>
                             <form action="shippingaddressadd" method="get">
-                                <button type="submit" class="btn btn-danger btn-user btn-block">Thêm</button>
+                                <button type="submit" class="btn btn-warning btn-user btn-block">Thêm</button>
                             </form>
+                            <hr>
                             <a href="order" class="btn btn-primary btn-user btn-block">Quay lại</a>
                         </div>
                     </div>

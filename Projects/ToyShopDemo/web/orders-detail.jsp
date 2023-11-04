@@ -40,7 +40,7 @@
                                 <c:forEach var="orderItem" items="${orderItems}">
                                     <div class="form-group">
                                         <label for="${orderItem}">Items</label> 
-                                        <input type="text" class="form-control form-control-user" id="${orderItem}" value="Product ID: ${orderItem.productId}, Quantity: ${orderItem.quantity}" readonly>
+                                        <input type="text" class="form-control form-control-user" id="${orderItem}" value="Product ID: ${orderItem.product.id}, Quantity: ${orderItem.quantity}" readonly>
                                     </div>
                                 </c:forEach>
                                 <div class="form-group">

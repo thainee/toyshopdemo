@@ -11,6 +11,7 @@ import model.OrderItem;
 import model.Product;
 
 public class OrderItemDAO extends DBContext {
+
     ProductDAO productDAO = new ProductDAO();
 
     public List<OrderItem> getOrderItemsByOrderId(int orderId) {
@@ -63,27 +64,42 @@ public class OrderItemDAO extends DBContext {
 
         return orderItems;
     }
-    
-        public boolean deleteOrderItem(int orderId, int productId) {
+
+    public boolean deleteOrderItem(int orderId, int productId) {
         try {
             String sql = "DELETE FROM order_items WHERE product_id = ? AND order_id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, productId);
             statement.setInt(2, orderId);
-            
-            int updateCount = statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
+            statement.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-
         return true;
     }
-        
-        public boolean addOrderItem(int orderId, int productId, int quantity) {
+    
+    public boolean updateOrderItem(int orderId, int productId, int quantity) {
+        try {
+            String sql = "UPDATE order_items SET quantity = ? "
+                    + "WHERE order_id = ? AND product_id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, quantity);
+            statement.setInt(2, orderId);
+            statement.setInt(3, productId);
+
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean addOrderItem(int orderId, int productId, int quantity) {
         try {
             String sql = "INSERT INTO order_items (order_id , product_id , quantity) "
                     + "VALUES(? , ?, ?)";
@@ -92,13 +108,11 @@ public class OrderItemDAO extends DBContext {
             statement.setInt(2, productId);
             statement.setInt(3, quantity);
 
-            int updateCount = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }

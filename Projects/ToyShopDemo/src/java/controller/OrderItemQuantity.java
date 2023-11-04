@@ -10,9 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.ProductService;
 
-@WebServlet(name="OrderItemController", urlPatterns={"/orderitem"})
-public class OrderItemController extends HttpServlet {
-
+@WebServlet(name="OrderItemQuantity", urlPatterns={"/orderitemquantity"})
+public class OrderItemQuantity extends HttpServlet {
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -25,8 +25,13 @@ public class OrderItemController extends HttpServlet {
         ProductService productService = new ProductService();
         int productId = Integer.parseInt(request.getParameter("productId"));
         int orderId = Integer.parseInt(request.getParameter("orderId"));
-        productService.deleteOrderItem(orderId, productId);
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String button = request.getParameter("button");
+        if (button.equals("minus") && quantity > 1) {
+            productService.updateOrderItemQuantity(orderId, productId, quantity - 1);
+        } else if (button.equals("plus")){
+            productService.updateOrderItemQuantity(orderId, productId, quantity + 1);
+        }
         response.sendRedirect("order");
     }
-
 }

@@ -177,6 +177,26 @@ public class OrderDAO extends DBContext {
         }
         return true;
     }
+    
+    public boolean updateOrderPaymentMethod(int id, int paymentMethodId, int totalPrice) {
+        try {
+            String sql = "UPDATE orders "
+                    + "SET payment_method_id = ?, total = ?, order_status = ? "
+                    + "WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, paymentMethodId);
+            statement.setInt(2, totalPrice);
+            statement.setString(3, "Processing");
+            statement.setInt(4, id);
+
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
 
     public boolean addOrder(int user_id, int shipping_address_id, int payment_method_id, String order_status, double total) {
         try {
@@ -188,6 +208,22 @@ public class OrderDAO extends DBContext {
             statement.setInt(3, payment_method_id);
             statement.setString(4, order_status);
             statement.setDouble(5, total);
+
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean addOrder(int userId) {
+        try {
+            String sql = "INSERT INTO orders (user_id, order_status) "
+                    + "VALUES (?, 'Opening')";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, userId);
 
             statement.executeUpdate();
 

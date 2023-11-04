@@ -1,19 +1,23 @@
 
 package service;
 
+import dal.PaymentMethodDAO;
 import dal.ShippingAddressDAO;
 import dal.UserDAO;
 import java.util.List;
+import model.PaymentMethod;
 import model.ShippingAddress;
 import model.User;
 
 public class UserService {
     private UserDAO userDAO;
     private ShippingAddressDAO shippingAddressDAO;
+    private PaymentMethodDAO paymentMethodDAO;
     
     public UserService() {
         userDAO = new UserDAO();
         shippingAddressDAO = new ShippingAddressDAO();
+        paymentMethodDAO = new PaymentMethodDAO();
     }
     
     public User authenticate(String email, String password) {
@@ -62,5 +66,17 @@ public class UserService {
     
     public int getLastShippingAddressId() {
         return shippingAddressDAO.getLastId();
+    }
+    
+    public PaymentMethod getPaymentMethodById(int id) {
+        return paymentMethodDAO.getPaymentMethodById(id);
+    }
+    
+    public boolean addNewPaymentMethod(String name, String description) {
+        return paymentMethodDAO.addPaymentMethod(name, description);
+    }
+    
+    public int getLastPaymentMethodId() {
+        return paymentMethodDAO.getLastId();
     }
 }

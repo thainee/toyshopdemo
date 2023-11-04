@@ -157,7 +157,7 @@ public class ShippingAddressDAO extends DBContext {
     public int getLastId() {
         int id = 0;
         try {
-            String sql = "SELECT IDENT_CURRENT('shipping_addresses') - 1 AS currentId;";
+            String sql = "SELECT IDENT_CURRENT('shipping_addresses') AS currentId;";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {

@@ -99,6 +99,14 @@ public class ProductService {
     public boolean updateOrderStatus(int id, String order_status) {
         return orderDAO.updateOrderStatus(id, order_status);
     }
+    
+    public boolean updateOrderPaymentMethod(int id, int paymentMethodId, int totalPrice) {
+        return orderDAO.updateOrderPaymentMethod(id, paymentMethodId, totalPrice);
+    }
+    
+    public boolean addNewOrder(int userId) {
+        return orderDAO.addOrder(userId);
+    }
 
     public boolean deleteProduct(int id) {
         return productDAO.deleteProduct(id);
@@ -112,6 +120,9 @@ public class ProductService {
         return orderItemDAO.addOrderItem(orderId, productId, quantity);
     }
 
+    public boolean updateOrderItemQuantity(int orderId, int productId, int quantity) {
+        return orderItemDAO.updateOrderItem(orderId, productId, quantity);
+    }
 
     public boolean updateCategory(int id, String name, String description) {
         return categoryDAO.updateCategory(id, name, description);

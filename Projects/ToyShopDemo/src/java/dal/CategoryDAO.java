@@ -84,13 +84,11 @@ public class CategoryDAO extends DBContext {
             statement.setString(1, name);
             statement.setString(2, description);
 
-            int updateCount = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }
@@ -107,11 +105,11 @@ public class CategoryDAO extends DBContext {
 
             int updateCount = statement.executeUpdate();
 
-            if (updateCount == 0) {
-                return false;
-            }
+            statement.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
 
         return true;

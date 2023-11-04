@@ -36,31 +36,6 @@
 
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script>
-// Assuming you have a product price
-            var productPrice = parseFloat(orderItem.product.price);
-
-// Get the quantity input field, minus button, plus button, and total field
-            var quantityInput = document.querySelector('input[name="quantity"]');
-            var minusButton = document.querySelector('.minus');
-            var plusButton = document.querySelector('.plus');
-            var totalField = document.querySelector('.total');
-
-// Update total function
-            function updateTotal() {
-                var quantity = parseInt(quantityInput.value);
-                var total = quantity * productPrice;
-                totalField.textContent = total.toFixed(2);
-            }
-
-// Event listeners for the buttons and the input field
-            minusButton.addEventListener('click', updateTotal);
-            plusButton.addEventListener('click', updateTotal);
-            quantityInput.addEventListener('input', updateTotal);
-
-// Initial total update
-            updateTotal();
-        </script>
     </head>
     <body>
         <section class="h-100 gradient-custom">
@@ -73,7 +48,7 @@
                             </div>
                             <div class="card-body">
                                 <c:if test="${not empty sessionScope.orderItems}">
-                                    <c:set var="totalPrice" value="${0}"/>
+                                    <c:set var="totalPrice" value="${0}" scope="session"/>
                                     <c:forEach var="orderItem" items="${sessionScope.orderItems}">
                                         <!-- Single item -->
                                         <div class="row">
@@ -95,14 +70,14 @@
                                                 <form action="orderitem" method="post">
                                                     <input type="hidden" name="orderId" value="${sessionScope.currentOrder.id}">
                                                     <input type="hidden" name="productId" value="${orderItem.product.id}">
-                                                    <button type="submit" class="btn btn-primary btn-sm me-1 mb-2 minus" data-mdb-toggle="tooltip"
+                                                    <button type="submit" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
                                                             title="Remove item">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                                         </svg>
                                                     </button>
                                                 </form>
-                                                <button type="button" class="btn btn-danger btn-sm mb-2 plus" data-mdb-toggle="tooltip"
+                                                <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
                                                         title="Move to the wish list">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
@@ -113,31 +88,35 @@
 
                                             <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                                 <!-- Quantity -->
-                                                <div class="d-flex mb-4" style="max-width: 300px">
-                                                    <button class="btn btn-primary px-3 me-1 btn-sm d-flex justify-content-center align-items-center"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <form class="d-flex mb-4" action="orderitemquantity" method="post"style="max-width: 300px">
+                                                    <input type="hidden" name="orderId" value="${sessionScope.currentOrder.id}">
+                                                    <input type="hidden" name="productId" value="${orderItem.product.id}">
+                                                    <input type="hidden" name="quantity" value="${orderItem.quantity}">
+                                                    <button type="submit" name="button" value="minus" class="btn btn-primary px-3 me-1 btn-sm d-flex justify-content-center align-items-center"
+                                                            onclick="if (this.parentNode.querySelector('input[type=number]').value > 1)
+                                                                        this.parentNode.querySelector('input[type=number]').stepDown()">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
                                                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                                                         </svg>
                                                     </button>
 
                                                     <div class="form-outline">
-                                                        <input min="1" name="quantity" value="${orderItem.quantity}" type="number" class="form-control text-center"/>
-                                                        <c:set var="totalPrice" value="${totalPrice + (orderItem.quantity * orderItem.product.price)}"/>
+                                                        <input min="1" name="quantity" value="${orderItem.quantity}" type="number" class="form-control text-center" readonly/>
+                                                        <c:set var="totalPrice" value="${totalPrice + (orderItem.quantity * orderItem.product.price)}" scope="session"/>
                                                     </div>
 
-                                                    <button class="btn btn-primary px-3 ms-1 btn-sm d-flex justify-content-center align-items-center"
+                                                    <button type="submit" name="button" value="plus" class="btn btn-primary px-3 ms-1 btn-sm d-flex justify-content-center align-items-center"
                                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                                         </svg>
                                                     </button>
-                                                </div>
+                                                </form>
                                                 <!-- Quantity -->
 
                                                 <!-- Price -->
                                                 <p class="text-start text-md-center">
-                                                    <strong><fmt:formatNumber value="${orderItem.product.price}" type="currency"/></strong>
+                                                    <strong class="price"><fmt:formatNumber value="${orderItem.product.price *((100 - orderItem.product.discount)/100)}" type="currency"/></strong>
                                                 </p>
                                                 <!-- Price -->
                                             </div>
@@ -207,7 +186,7 @@
                                     <li
                                         class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                         Giá sản phẩm
-                                        <span class="total"><fmt:formatNumber value="${totalPrice}" type="currency"/></span>
+                                        <span class="total"><fmt:formatNumber value="${sessionScope.totalPrice}" type="currency"/></span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                         Phí vận chuyển
@@ -221,13 +200,13 @@
                                                 <p class="mb-0">(Đã bao gồm thuế VAT)</p>
                                             </strong>
                                         </div>
-                                        <span class="total"><fmt:formatNumber value="${totalPrice}" type="currency"/><strong></strong></span>
+                                        <span class="total"><fmt:formatNumber value="${sessionScope.totalPrice}" type="currency"/><strong></strong></span>
                                     </li>
                                 </ul>
 
-                                <button type="button" class="btn btn-primary btn-lg btn-block">
+                                <a href="payment" class="btn btn-primary btn-lg btn-block">
                                     Chọn phương thức thanh toán
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
