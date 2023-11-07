@@ -160,6 +160,24 @@ public class OrderDAO extends DBContext {
         return true;
     }
     
+    public boolean updateOrderShippingAddress(int id, int shipping_address_id) {
+        try {
+            String sql = "UPDATE orders "
+                    + "SET shipping_address_id = ? "
+                    + "WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, shipping_address_id);
+            statement.setInt(2, id);
+
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
     public boolean updateOrderStatus(int id, String order_status) {
         try {
             String sql = "UPDATE orders "
@@ -218,12 +236,13 @@ public class OrderDAO extends DBContext {
         return true;
     }
     
-    public boolean addOrder(int userId) {
+    public boolean addOrder(int userId, int shipping_address_id) {
         try {
-            String sql = "INSERT INTO orders (user_id, order_status) "
-                    + "VALUES (?, 'Opening')";
+            String sql = "INSERT INTO orders (user_id, shipping_address_id, order_status) "
+                    + "VALUES (?, ?, 'Opening')";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, userId);
+            statement.setInt(2, shipping_address_id);
 
             statement.executeUpdate();
 

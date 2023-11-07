@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import model.Order;
+import model.ShippingAddress;
 import model.User;
 import service.ProductService;
 import service.UserService;
@@ -33,6 +35,7 @@ public class PaymentMethod extends HttpServlet {
         int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
         Order currentOrder = (Order) session.getAttribute("currentOrder");
         User user = (User) session.getAttribute("user");
+        List<ShippingAddress> shippingAddresses = (List<ShippingAddress>)session.getAttribute("shippingAddresses");
         if (choice.equals("cash")) {
             String cardHolder = request.getParameter("cardHolder");
             String cardNumber = request.getParameter("cardNumber");
@@ -41,7 +44,8 @@ public class PaymentMethod extends HttpServlet {
             userService.addNewPaymentMethod("Thanh toán khi nhận hàng", "Lấy tiền khi khách nhận được hàng");
         }
         productService.updateOrderPaymentMethod(currentOrder.getId(), userService.getLastPaymentMethodId(), totalPrice);
-        productService.addNewOrder(user.getId());
+        productService.addNewOrder(user.getId(), shippingAddresses.get(0).getId());
+        session.removeAttribute("currentShippingAddress");
         session.removeAttribute("totalPrice");
         response.sendRedirect("home");
     }

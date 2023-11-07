@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Order;
+import service.ProductService;
 import service.UserService;
 
 @WebServlet(name="ShippingAddressController", urlPatterns={"/shippingaddress"})
@@ -24,7 +26,9 @@ public class ShippingAddressUpdate extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         UserService userService = new UserService();
+        ProductService productService = new ProductService();
         HttpSession session = request.getSession();
+        
         int shippingAddressId = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String phoneNumber = request.getParameter("phoneNumber");
@@ -32,8 +36,10 @@ public class ShippingAddressUpdate extends HttpServlet {
         String district = request.getParameter("district");
         String commune = request.getParameter("commune");
         String addressLine = request.getParameter("addressLine");
+        Order currentOrder = (Order)session.getAttribute("currentOrder");
         
         userService.updateShippingAddress(shippingAddressId, name, phoneNumber, addressLine, city, district, commune);
+        productService.updateOrderShippingAddress(currentOrder.getId(), shippingAddressId);
         session.setAttribute("currentShippingAddress", userService.getShippingAddressInfo(shippingAddressId));
         response.sendRedirect("order");
     }

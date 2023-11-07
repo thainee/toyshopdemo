@@ -104,8 +104,12 @@ public class ProductService {
         return orderDAO.updateOrderPaymentMethod(id, paymentMethodId, totalPrice);
     }
     
-    public boolean addNewOrder(int userId) {
-        return orderDAO.addOrder(userId);
+    public boolean updateOrderShippingAddress(int id, int shippingAddressId) {
+        return orderDAO.updateOrderShippingAddress(id, shippingAddressId);
+    } 
+    
+    public boolean addNewOrder(int userId, int shippingAddressId) {
+        return orderDAO.addOrder(userId, shippingAddressId);
     }
 
     public boolean deleteProduct(int id) {
