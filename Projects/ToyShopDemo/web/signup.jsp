@@ -26,27 +26,38 @@
                 event.preventDefault();
             }
 
-            function validatePassword() {
+            function validate() {
                 const retypePassword = document.getElementById('retypePassword');
                 const password = document.getElementById('password');
-
-                // Check if the password is valid. 6 character + include 1 upper, 1 lower, 1 num, 1 special char
+                const phoneNumber = document.getElementById('phoneNumber');
+                const phoneNumberRegex = /^\d{10}$/;
                 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+]).{6,}$/;
-                if (!passwordRegex.test(password.value)) {
+                
+                // Check if the password is empty or doesn't match the regex
+                if (password.value === '' || !passwordRegex.test(password.value)) {
                     alert('Mật khẩu phải có ít nhất 6 ký tự, 1 chữ thường, 1 chữ hoa, 1 chữ số và 1 ký tự đặc biệt.');
                     event.preventDefault();
                     return false;
                 }
 
-                // Check if the retypePassword equals the password.
-                if (retypePassword.value !== password.value) {
+                // Check if the phone number is empty or doesn't match the regex
+                if (phoneNumber.value === '' || !phoneNumberRegex.test(phoneNumber.value)) {
+                    alert('Số điện thoại phải là chữ số, có 10 ký tự.');
+                    event.preventDefault();
+                    return false;
+                }
+
+                
+
+                // Check if the retypePassword is empty or doesn't match the password
+                if (retypePassword.value === '' || password.value !== retypePassword.value) {
                     alert('Mật khẩu nhập lại không khớp.');
                     event.preventDefault();
                     return false;
                 }
 
                 // If all of the checks pass, return true.
-                if (passwordRegex.test(password.value) && retypePassword.value === password.value){
+                if (passwordRegex.test(password.value) && retypePassword.value === password.value && phoneNumberRegex.test(phoneNumber.value)) {
                     return true;
                 }
             }
@@ -64,7 +75,7 @@
 
             <div class="modal__body">
                 <!-- Auth form Sign up -->
-                <form action="signup" method="post" class="auth-form" onsubmit="validatePassword()">
+                <form action="signup" method="post" class="auth-form" onsubmit="validate()">
                     <div class="auth-form__container">
                         <div class="auth-form__header">
                             <h3 class="auth-form__heading">Đăng ký</h3>
@@ -76,7 +87,7 @@
                                 <input type="text" name="name" class="auth-form__input" placeholder="Tên của bạn" required>
                             </div>
                             <div class="auth-form__group">
-                                <input type="text" name="phoneNumber" class="auth-form__input" placeholder="Số điện thoại của bạn" required>
+                                <input id="phoneNumber" type="text" name="phoneNumber" class="auth-form__input" placeholder="Số điện thoại của bạn" required>
                             </div>
                             <div class="auth-form__group">
                                 <input type="email" name="email" class="auth-form__input" placeholder="Email của bạn" required>

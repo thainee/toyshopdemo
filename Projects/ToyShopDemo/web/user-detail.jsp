@@ -26,6 +26,7 @@
             function validatePassword() {
                 const retypePassword = document.getElementById('retypePassword');
                 const password = document.getElementById('password');
+                const phoneNumber = document.getElementById('phoneNumber');
                 if (retypePassword.value) {
                     // Check if the password is valid. 6 character + include 1 upper, 1 lower, 1 num, 1 special char
                     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+]).{6,}$/;
@@ -39,10 +40,16 @@
                         alert('Mật khẩu nhập lại không khớp.');
                         return false;
                     }
-
-                    // If all of the checks pass, return true.
-                    return true;
                 }
+                if (phoneNumber.value) {
+                    // Check if the password is valid. 6 character + include 1 upper, 1 lower, 1 num, 1 special char
+                    const phoneNumberRegex = /^\d{10}$/;
+                    if (!phoneNumberRegex.test(phoneNumber.value)) {
+                        alert('Số điện thoại phải là chữ số, có 10 ký tự.');
+                        return false;
+                    }
+                }
+                return true;
             }
 
         </script>
