@@ -82,7 +82,8 @@
         <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js'></script>
         <script type='text/javascript' src='#'></script>
         <script type='text/javascript' src='#'></script>
-        <script type='text/javascript'>document.addEventListener('DOMContentLoaded', () => {
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', () => {
                 for (const el of document.querySelectorAll("[placeholder][data-slots]")) {
                     const pattern = el.getAttribute("placeholder"),
                             slots = new Set(el.dataset.slots || "_"),

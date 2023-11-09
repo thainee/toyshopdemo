@@ -21,6 +21,20 @@
 
         <!-- Custom styles for this template-->
         <link href="./assets/css/sb-admin-2.min.css" rel="stylesheet">
+        <script>
+            function validate() {
+                const phoneNumber = document.getElementById('phoneNumber');
+                const phoneNumberRegex = /^\d{10}$/;
+
+                if (phoneNumber.value === '' || !phoneNumberRegex.test(phoneNumber.value)) {
+                    alert('Số điện thoại phải là chữ số, có 10 ký tự.');
+                    event.preventDefault();
+                    return false;
+                }
+                return true;
+
+            }
+        </script>
     </head>
     <body>
         <div class="bg-gradient">
@@ -33,7 +47,7 @@
                                 <h1 class="h4 text-gray-900 mb-4">Địa chỉ nhận hàng</h1>
                             </div>
                             <c:forEach var="shippingAddress" items="${sessionScope.shippingAddresses}">
-                                <form class="user" action="shippingaddress" method="post">
+                                <form class="user" action="shippingaddress" method="post" onsubmit="validate()">
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <label for="name">Tên</label>
