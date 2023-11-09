@@ -25,7 +25,27 @@
             const requiredInputs = document.querySelectorAll('input[required]');
 
             const isAnyInputEmpty = requiredInputs.some((input) => input.value === '');
+            
+            function validate() {
+                const productId = document.getElementById('productId');
+                const categoryID = document.getElementById('categoryID');
+                const integerRegex = /^\d+$/;
+                
+                if (productId.value === '' || !integerRegex.test(productId.value)) {
+                    alert('Product ID must be an integer and can not empty.');
+                    event.preventDefault();
+                    return false;
+                }
+
+                if (categoryID.value === '' || !integerRegex.test(categoryID.value)) {
+                    alert('Category ID must be an integer and can not empty.');
+                    event.preventDefault();
+                    return false;
+                }
+                return true;
+            }
         </script>
+
     </head>
     <body>
         <div class="bg-gradient">
@@ -37,7 +57,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Product_Category Insert</h1>
                             </div>
-                            <form class="user" action="insert" method="post">
+                            <form class="user" action="insert" method="post" onsubmit="validate()">
                                 <div class="form-group">
                                     <label for="productId">Product ID</label>
                                     <input type="text" name="productId" class="form-control form-control-user" id="productId" required>

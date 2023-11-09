@@ -28,6 +28,30 @@
 
             const isAnyInputEmpty = requiredInputs.some((input) => input.value === '');
         </script>
+        <script>
+            function validate() {
+                const discount = document.getElementById('discount');
+                const price = document.getElementById('price');
+                const integerRegex = /^\d+$/;
+
+                if (discount.value === null || discount.value === '') {
+                    discount.value = '0';
+                }
+                
+                if (!integerRegex.test(discount.value) || parseInt(discount.value) < 0 || parseInt(discount.value) > 100) {
+                    alert('Discount must be an integer between 0 and 100.');
+                    event.preventDefault();
+                    return false;
+                }
+
+                if (price.value === '' || !integerRegex.test(price.value)) {
+                    alert('Price must be an integer and can not empty.');
+                    event.preventDefault();
+                    return false;
+                }
+                return true;
+            }
+        </script>
     </head>
     <body>
         <div class="bg-gradient">
@@ -39,7 +63,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Product Insert</h1>
                             </div>
-                            <form class="user" action="insert" method="post" enctype="multipart/form-data">
+                            <form class="user" action="insert" method="post" enctype="multipart/form-data" onsubmit="validate()">
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" name="name" class="form-control form-control-user" id="name" required>
